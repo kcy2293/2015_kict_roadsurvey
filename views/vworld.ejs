@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>2015 KICT-건설기술연구원 야간도로조사자료관리 프로그램</title> 
+	<link rel="stylesheet" href="/jquery/jquery-ui-1.10.3.css" />
+	<link rel="stylesheet" href="/leaflet/leaflet.css" />
+	<link rel="stylesheet" href="/css/style.jstree.min.css" />
+	<link rel='stylesheet' href='/css/style.css'/>
+
+	<!--[if lt IE 9]>
+	<script src="/js/html5shiv.js"></script>
+	<script src="/js/es5-shim.min.js"></script>
+	<![endif]-->
+
+	<script type="text/javascript" src="/jquery/jquery-latest.js"></script>
+	<script type="text/javascript" src="/jquery/jquery-ui-latest.js"></script>
+	<script type="text/javascript" src="/jquery/jquery.layout-latest.js"></script>
+	<script type="text/javascript" src="/jquery/jquery.paginate.js"></script>
+	<script type="text/javascript" src="/jquery/jquery.battatech.excelexport.min.js"></script>
+	<script type="text/javascript" src="/js/jstree.js"></script>
+	<script type="text/javascript" src="/leaflet/leaflet-src.js"></script>
+	<script type="text/javascript" src="/leaflet/proj4.js"></script>
+	<script type="text/javascript" src="/leaflet/proj4leaflet.js"></script>
+	<script type="text/javascript" src="/leaflet/leaflet-providers.js"></script>
+	<script type="text/javascript" src="/leaflet/Leaflet.KoreanTmsProviders.js"></script>
+	<script type="text/javascript" src="/leaflet/leaflet-editable-polyline.js"></script>
+	<script type="text/javascript" src="/leaflet/Leaflet.MultiOptionsPolyline.js"></script>
+	<script type="text/javascript" src="/leaflet/leaflet.polylineDecorator.js"></script>
+
+	<script type="text/javascript" src="/js/moment.js"></script>
+	<script type="text/javascript" src="/js/twix.min.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="/js/js.cookie.js"></script>
+
+	<script type="text/javascript">
+		var docslist = <%- docslist %>;
+		var dblist = <%- dblist %>;
+		var dbname = "<%- db %>";
+		var dirlist = <%- dirList %>;
+	</script>
+
+</head>
+<body>
+	<script type="text/javascript">
+		$('body').css('visibility', 'hidden');
+	</script>
+
+	<!---------- 상단 로고 및 타이틀-------------->
+	<div class="ui-layout-north">
+		<div class="top_block">
+			<div class="content" >
+				<div class="logo">
+					<a href="http://www.kict.re.kr/">
+						<img src="/images/logo.gif" />
+					</a>
+				</div>
+				<div class="version">
+					<h2>야간도로 시인성 평가자료 관리시스템       V1.0</h2>
+				</div>
+			</div> 
+		</div> 
+	</div>
+
+	<!------ 왼쪽 메뉴, 검색, 결과 영역 ---------->  
+	<div class="ui-layout-west">
+		<div class="side-menu">
+			<h4>데이터베이스</h4>
+		</div>	
+		<div class="side-content">
+			<select class="dblists" id="dblistSelect"></select>
+			<button id="mngMenu">관리</button>
+		</div>
+		<ul>
+			<li>DB생성</li>
+			<li>DB삭제</li>
+			<li>자료등록</li>
+			<li>자료분석</li>
+		</ul>
+		<div class="side-menu">
+			<h4>검색 조건</h4>
+		</div>
+		<div class="search-content">
+			<input type="checkbox" value=""> 기간&nbsp;&nbsp;
+			<input type="text" id="from"> ~ <input type="text" id="to"> 
+		</div>
+		<div class="search-content">
+			<input type="checkbox" value=""> 작업&nbsp;&nbsp;
+			<select id="deviceList">
+				<option value="clear" checked>기기명</option>
+			</select>
+		</div>
+		<div class="search-submit">
+			<input id="search-db" type="button" value="검색" style="width:100px;">
+		</div>											
+		<div class="side-menu">
+			<h4>결과</h4>
+		</div>
+		<div class="side-result">
+			<div class="result-options">
+				<button id="btnAnimate">play</button>
+				<button id="stopAnimate">stop</button>
+				<button id="btnExport">내보내기</button>
+				<select id="listSize">
+					<option value="10">10개씩</option>
+					<option value="15">15개씩</option>
+					<option value="20">20개씩</option>
+					<option value="30">30개씩</option>
+					<option value="40">40개씩</option>
+					<option value="50">50개씩</option>
+					<option value="100">100개씩</option>
+				</select>
+			</div>
+			<table id="docsTable"> 
+				<thead> 
+				<tr>
+					<th>No</th>
+					<th>관측일</th>
+					<th>관측시</th>
+					<th>노면밝기</th>
+					<th>델리네이터<br>개수</th>
+					<th>갈매기표지<br>개수</th>
+				</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			<div id="paging"></div>
+		</div>
+
+		<!------ DB관리를 위한 모달 다이얼로그 ------>
+		<div id="createdb" title="DB 생성">
+			<p>새롭게 생성할 DB 이름을 입력하세요</p>
+			<input type="text" id="inputbox"/>
+			<p class="validateTips"></p>
+		</div>
+		<div id="removedb" title="DB 삭제">
+			<p id="deleteMsg"></p>
+			<input id="rname" type="hidden"></input>
+		</div>
+		<div id="importdb" title="자료추가">
+			<div>
+				<p>데이터베이스</p>
+				<select id="dblistform"></select>
+				<button id="btnCreate" class="icon"></button>
+				<button id="btnDelete" class="icon"></button>
+			</div>
+			<div>
+				<p>자료폴더</p>
+				<select id="dirlistform"></select>
+			</div>
+			<div id="progressbar">
+				<div id="importMsg"></div>
+			</div>
+		</div>
+	</div>
+
+	<!------ 센터 맵과 하단 json, image 영역 ------>
+	<div id="inner" class="ui-layout-center">
+		<div class="ui-layout-center">
+			<div id="map1"></div>
+		</div>
+		<div class="ui-layout-south">
+			<div class="jsonView">
+				<button id="jsonDownload">JSON 다운로드</button>
+				<div id="jsonInfo"></div>
+			</div>
+			<div id="imagesView">
+				<button id="imgDownload">이미지 다운로드</button>
+				<ul>
+					<li><a href="#tabs-1">RGB</a></li>
+					<li><a href="#tabs-2">YUV</a></li>
+					<li><a href="#tabs-3">Tracking</a></li>
+					<li><a href="#delin">Delineator</a></li>
+					<li><a href="#lane">Lane</a></li>
+				</ul>
+				<div id="tabs-1"><img id="RGBImg"/></div>
+				<div id="tabs-2"><img id="YUVImg"/></div>
+				<div id="tabs-3"><img id="TRACKINGImg"/></div>
+				<div id="delin"><img id="DELINImg"/></div>
+				<div id="lane"><img id="LaneImg"/></div>
+			</div>
+			<a id="download_link" download="">
+				<input id="export_file" type="button" style="display:none" />
+			</a>
+			<form id="openPost" method="post">
+				<input type="hidden" name="imgPath" id="imgPath" value="" />
+				<input type="hidden" name="updateUrl" id="updateUrl" value="" />
+			</form>
+		</div>
+	</div>
+
+	<script src="/js/events.js"></script>
+	<script src="/js/main.js"></script>
+	<script type="text/javascript">
+		$('body').css('visibility', 'visible');
+	</script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+/*=============================
+ * 1. General
+ *=============================*/
+body {
+	color:black;
+	font-family:sans-serif;
+	font-size:x-small;
+	font-size-adjust:none;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.5em;
+	margin-left: 0;
+	margin-right: 0;
+	overflow-y: scroll;
+}
+
+.container {
+	width: 100%;
+}
+
+/*=============================
+ * 2. LEFT-MENU : Toolbox
+ *=============================*/
+.container .left-menu {
+	float: left;
+	width: 10%;
+}
+
+.container .left-menu table{
+	color:black;
+	font-size:100%;
+	border-collapse:collapse;
+	background: #F2F2F2 none repeat scroll 0 0;
+	border: 1px solid #AAAAAA;
+	margin: 0 auto;
+}
+.container .left-menu th, td{
+	border: 1px solid #AAAAAA;
+	vertical-align: top;
+	padding: 0.2em 0.4em;
+}
+
+.container .left-menu td {
+	text-align: left;
+	position: relative;
+}
+.container .left-menu th {
+	font-size:small;
+	font-weight: bold;
+	text-align: center;
+	background: #E2E2E2 none repeat scroll 0 0;
+}
+
+.container .left-menu table input {
+	font-size: small;
+}
+
+.container .left-menu #traceImageURL {
+	width: 100px;
+}
+
+.container .left-menu #traceImageScale {
+	width: 60px;
+}
+
+.container .left-menu #pathListbox {
+	font-size: small;
+	width: 100%;
+}
+
+.container .left-menu #exportArea {
+	font-size: x-small;
+	width: 120px;
+	height: 300px;
+}
+
+.container .left-menu #clear {
+	width: 100%;
+}
+
+.container .left-menu #save {
+	width: 100%;
+}
+
+.color-box {
+	width:  24px;
+	height: 24px;
+	border: 1px solid white;
+}
+
+
+/*=============================
+ * 3. EDIT-IMG
+ *=============================*/
+.container .edit-img {
+	float: left;
+	width: 90%;
+}
+
+.container .edit-img img {
+	position: absolute;
+}
+
+/*=============================
+ * 4. testCanvas
+ *=============================*/
+#testCanvas {
+ 	clear: both;
+}
+
+#testCanvas canvas {
+	margin-top: 10px;
+	border: 1px solid;
+}
+
+/*=============================
+ * 5. popup table
+ *=============================*/
+.tableTitle {
+	margin-bottom: 3px;
+	font-size: 10px;
+}
+.popupTable {
+	margin:0px;padding:0px;
+	width:100%;
+	border:1px solid #000000;
+	
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+	
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+	
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+	
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}.popupTable table{
+    border-collapse: collapse;
+        border-spacing: 0;
+	width:100%;
+	height:100%;
+	margin:0px;padding:0px;
+}.popupTable tr:last-child td:last-child {
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.popupTable table tr:first-child td:first-child {
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}
+.popupTable table tr:first-child td:last-child {
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+}.popupTable tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+}.popupTable tr:hover td{
+	background-color:#ffffff;
+		
+
+}
+.popupTable td{
+	vertical-align:middle;
+	background-color:#ffffff;
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:center;
+	padding:3px;
+	font-size:9px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+}.popupTable tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.popupTable tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.popupTable tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.popupTable tr:first-child td{
+		background:-o-linear-gradient(bottom, #cccccc 5%, #cccccc 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #cccccc) );
+	background:-moz-linear-gradient( center top, #cccccc 5%, #cccccc 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc", endColorstr="#cccccc");	background: -o-linear-gradient(top,#cccccc,cccccc);
+
+	background-color:#cccccc;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:10px;
+	font-family:Arial;
+	font-weight:normal;
+	color:#000000;
+}
+.popupTable tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #cccccc 5%, #cccccc 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #cccccc) );
+	background:-moz-linear-gradient( center top, #cccccc 5%, #cccccc 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc", endColorstr="#cccccc");	background: -o-linear-gradient(top,#cccccc,cccccc);
+
+	background-color:#cccccc;
+}
+.popupTable tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.popupTable tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}

@@ -1,0 +1,115 @@
+/*=============================
+ * 1. General
+ *=============================*/
+body {
+	color:black;
+	font-family:sans-serif;
+	font-size:x-small;
+	font-size-adjust:none;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.5em;
+	margin-left: 0;
+	margin-right: 0;
+	overflow-y: scroll;
+}
+
+.container {
+	width: 100%;
+}
+
+/*=============================
+ * 2. LEFT-MENU : Toolbox
+ *=============================*/
+.container .left-menu {
+	float: left;
+	width: 10%;
+}
+
+.container .left-menu table{
+	color:black;
+	font-size:100%;
+	border-collapse:collapse;
+	background: #F2F2F2 none repeat scroll 0 0;
+	border: 1px solid #AAAAAA;
+	margin: 0 auto;
+}
+.container .left-menu th, td{
+	border: 1px solid #AAAAAA;
+	vertical-align: top;
+	padding: 0.2em 0.4em;
+}
+
+.container .left-menu td {
+	text-align: left;
+	position: relative;
+}
+.container .left-menu th {
+	font-size:small;
+	font-weight: bold;
+	text-align: center;
+	background: #E2E2E2 none repeat scroll 0 0;
+}
+
+.container .left-menu table input {
+	font-size: small;
+}
+
+.container .left-menu #traceImageURL {
+	width: 100px;
+}
+
+.container .left-menu #traceImageScale {
+	width: 60px;
+}
+
+.container .left-menu #pathListbox {
+	font-size: small;
+	width: 100%;
+}
+
+.container .left-menu #exportArea {
+	font-size: x-small;
+	width: 120px;
+	height: 300px;
+}
+
+.container .left-menu #clear {
+	width: 100%;
+}
+
+.container .left-menu #save {
+	width: 100%;
+}
+
+.color-box {
+	width:  24px;
+	height: 24px;
+	border: 1px solid white;
+}
+
+
+/*=============================
+ * 3. EDIT-IMG
+ *=============================*/
+.container .edit-img {
+	float: left;
+	width: 90%;
+}
+
+.container .edit-img img {
+	position: absolute;
+}
+
+/*=============================
+ * 4. testCanvas
+ *=============================*/
+#testCanvas {
+ 	clear: both;
+}
+
+#testCanvas canvas {
+	margin-top: 10px;
+	border: 1px solid;
+}

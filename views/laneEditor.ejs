@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>2015 KICT-이미지편집툴</title> 
+	<link rel="stylesheet" type="text/css" href="/jquery/jquery-ui-1.10.3.css" />
+	<link rel="stylesheet" type="text/css" href="/css/colpick.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.laneScad.css" />
+	<!--[if lt IE 9]>
+	<script src="/js/html5shiv.js"></script>
+	<script src="/js/es5-shim.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="container">
+		<div class="left-menu">
+			<table id="toolbox">
+				<tr><th colspan="4" class="toolboxtitle">Toolbox</th></tr>
+				<tr>
+					<td id="editToolSource" />
+					<td id="addToolSource" />
+					<td id="remToolSource" />
+					<td style="cursor:pointer"><div class="color-box"></div></td>
+				</tr>
+				<tr>
+					<td colspan="4" id="imageToolOptions" style="display:none">
+						Url: <input type="text" id="traceImageURL" disabled><br \>
+						Scale: <input type="text" id="traceImageScale" value="100" disabled>%
+					</td>
+				</tr>
+
+				<tr><th colspan="4" class="toolboxtitle">Paths</th></tr>
+				<tr>
+					<td colspan="4">
+						<select size="10" id="pathListbox">
+							<option>[New]</option>
+						</select>
+					</td>
+				</tr>
+
+				<tr><th colspan="4" class="toolboxtitle">OpenSCAD code</th></tr>
+				<tr>
+					<td colspan="4">
+						<textarea id="exportArea" readonly></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<input id="clear" type="button" value="CLEAR"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<input id="save" type="button" value="SAVE"/>
+					</td>
+				</tr>
+
+			</table>
+		</div>
+		<div class="edit-img">
+			<img id="traceImage"  crossorigin="anonymous"/>
+			<div id="drawAreaSource" ></div>
+			<div id="cursorCoordinates"></div>
+		</div>
+		<div id="saveInfo" title="선택영역 이미지 저장">
+			<div id="confirmMsg" style="font-size:17px;margin-left:10px">
+			</div>
+		</div>
+
+		<div id="testCanvas"></div>
+
+		<script type="text/javascript" src="/jquery/jquery-latest.js"></script>
+		<script type="text/javascript" src="/jquery/jquery-ui-latest.js"></script>
+		<script type="text/javascript" src="/js/raphael-min.js"></script>
+		<script type="text/javascript" src="/js/osped_lane.js"></script>
+		<script type="text/javascript" src="/js/colpick.js"></script>
+		<script type="text/javascript" src="/js/js.cookie.js"></script>
+		<script type="text/javascript">
+			var imgpath = "<%-imgPath%>";
+			var updateUrl = "<%-updateUrl%>";
+			$("#traceImageURL").val(imgpath);
+		</script>
+		<script type="text/javascript" src="/js/laneTools.js"></script>
+	</body>
+	</html>
